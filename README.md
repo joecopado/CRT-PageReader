@@ -7,6 +7,9 @@ explains every step. It is for the developers of the CRT Test Agent, as somethin
 
 Start with `tests/how-the-page-reader-works.robot`: its header comment and its Documentation are the explanation.
 
+
+**What has been captured and measured, and what is still to mine:** the Parser Data Mine page, https://claude.ai/artifact/4by3bBih8eFLx1hrgcotaA (ask the repo owner for access). It covers the capture corpus, the parser's measured results, and every Salesforce component type not yet seen, with where to find it.
+
 ## What is in it
 
 | Path | What it is |
