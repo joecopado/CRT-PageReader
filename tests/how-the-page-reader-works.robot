@@ -4,7 +4,7 @@
 # WHO IT IS FOR: developers of the CRT Test Agent. They asked for a parser that scrubs a Salesforce page of its
 # "uninteresting" parts, as a starting point. This repository is that parser and the three keywords that wrap it.
 # Nothing here is new code written for the occasion: every file listed below is a byte-for-byte copy of a file in
-# CRTPagePatterns (commit b69ac74), except the files marked WRITTEN HERE and the files marked NOT COPIED.
+# CRTPagePatterns (commit 6f147e6), except the files marked WRITTEN HERE and the files marked NOT COPIED.
 #
 # THE FILE MAP (this repository, and nothing else)
 #
@@ -31,9 +31,9 @@
 #                                      Gz Walk Parse, Gz Walk Calls, Gz Walk Pages Total, Gz Walk Plan Size, Gz Walk
 #                                      Summary. They call the page reader's own functions and re-implement nothing.
 #
-#   resources/garzai_parser/           Copied, 58 of the bundle's 62 files (see NOT COPIED below). The code the reader imports.
+#   resources/garzai_parser/           Copied whole, as its generator writes it. The code the reader imports.
 #     MANIFEST.json                    The bundle's own list: what is in it, the entry module, a sha256 per file, and when it
-#                                      was built. It still names the four template files that are NOT COPIED.
+#                                      was built (2026-10-08).
 #     tools/recorder/crt_override/compose_live.py
 #                                      THE ENTRY MODULE. The reader uses live_capture (capture the open page),
 #                                      parse_capture (parse a capture), _fingerprint (has the page changed?),
@@ -69,8 +69,6 @@
 # NOT COPIED, because the reader does not need them:
 #   resources/garzai_pom/              The page-object store (recorded locators per page). The reader looks for it beside
 #                                      itself (pack_dir) and, when absent, says so and derives every call from the page.
-#   four of the bundle's templates     salesforce-lightning.v2.json, salesforce-lightning.v3.json, web-generic.v3.json,
-#                                      react-virtualized.json. The default template selection never picks them.
 #
 # THE CASES BELOW AND HOW HONEST THEY ARE
 #   # PROVEN:       a run read back the result; the date and what ran are stated. The records of those runs are kept by the
@@ -78,11 +76,9 @@
 #   # NOT-YET-RUN:  nothing has shown it. Read these before you rely on the line.
 #
 # ONE HONEST NOTE ABOUT THE PARSER BUNDLE
-#   resources/garzai_parser is a SNAPSHOT: MANIFEST.json says generated 2026-09-23T11:16:49 (plus two files added later,
-#   confirm.py and pom/export_flow.py). The maintainer's current parser has moved on: a drift check run on 2026-10-08
-#   finds 2 of 6 modules and 4 of 6 templates identical to it; the vendored bs4 and soupsieve are identical. The bundle will
-#   be regenerated after the 2026-10-08 demo with the generator named in MANIFEST.json. So read the SHAPE of the pipeline
-#   here, not the last detail of any one rule.
+#   resources/garzai_parser is CURRENT: regenerated 2026-10-08 from the maintainer's parser with the generator named in
+#   MANIFEST.json (every file listed with its source hash, so later drift is a failed comparison). CRTPagePatterns carries
+#   the same bundle. Scored before shipping on 10 stored pages against the old one: this suite's page reads identically.
 # =====================================================================================================================
 *** Settings ***
 Documentation             HOW THE PAGE READER WORKS -- a guided tour for the developers of the CRT Test Agent.

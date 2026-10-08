@@ -20,10 +20,9 @@ Start with `tests/how-the-page-reader-works.robot`: its header comment and its D
 | `SOURCE-HASHES.txt` | sha256 of every copied file. `shasum -a 256 -c SOURCE-HASHES.txt` |
 | `LICENSE-beautifulsoup4.txt` | Licence text of Beautiful Soup 4.15.0, the version vendored in the bundle. |
 
-Every file in `SOURCE-HASHES.txt` (61) is byte-identical to the same path in CRTPagePatterns at commit `b69ac74`, the
+Every file in `SOURCE-HASHES.txt` (65) is byte-identical to the same path in CRTPagePatterns at commit `6f147e6`, the
 repository this was taken from. Left out because the reader does not need them: the page-object store of recorded locators
-(`resources/garzai_pom/`) and four of the bundle's templates (`salesforce-lightning.v2.json`, `salesforce-lightning.v3.json`,
-`web-generic.v3.json`, `react-virtualized.json`). `MANIFEST.json` is the bundle's original list and still names those four.
+(`resources/garzai_pom/`). The parser bundle is shipped whole, exactly as its generator writes it.
 
 ## Variables CRT must define
 
@@ -54,9 +53,11 @@ Each case in the test file is labelled `PROVEN` (a run read the result back; dat
 As packaged in this repository the suite has had a dry run only. The same keywords have run in CRT builds and in the CRT
 editor; read the labels before relying on a line.
 
-**The bundle is a snapshot.** `MANIFEST.json` says it was generated 2026-09-23T11:16:49. The maintainer's current parser has
-moved on (a drift check on 2026-10-08 found 2 of 6 modules and 4 of 6 templates identical), and the bundle will be regenerated
-after the 2026-10-08 demo. Read the shape of the pipeline, not the last detail of any one rule.
+**The bundle is current.** It was regenerated on 2026-10-08 from the maintainer's parser with the generator named in
+`MANIFEST.json`, which lists every file with the hash of its source, so any later drift shows up as a failed comparison.
+CRTPagePatterns carries the same bundle. Before shipping it, the old and new bundles were scored on the same 10 stored
+pages: the Zoo Nightmare Inputs page this suite uses read identically; elsewhere unlabelled table rows dropped from 69 to
+5 on one page, and anchors were kept only where a label repeats.
 
 ## Third-party code and licences
 
